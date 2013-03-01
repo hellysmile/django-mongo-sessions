@@ -2,8 +2,8 @@ django-mongo-session
 ====================
 :Info: mongodb as Django sessions backend
 
-.. image:: https://api.travis-ci.org/hellysmile/django-mongo-session.png
-        :target: https://travis-ci.org/hellysmile/django-mongo-session
+.. image:: https://api.travis-ci.org/hellysmile/django-mongo-sessions.png
+        :target: https://travis-ci.org/hellysmile/django-mongo-sessions
 
 features
 ********
@@ -19,7 +19,7 @@ run ``pip install django-mongo-session``
 
 set ``mongo_sessions.session`` as session engine::
 
-    SESSION_ENGINE = 'mongo_session.session'
+    SESSION_ENGINE = 'mongo_sessions.session'
 
 --------
 settings

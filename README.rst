@@ -1,5 +1,5 @@
-django-mongo-session
-====================
+django-mongo-sessions
+=====================
 :Info: mongodb as Django sessions backend
 
 .. image:: https://api.travis-ci.org/hellysmile/django-mongo-sessions.png

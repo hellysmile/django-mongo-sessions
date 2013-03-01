@@ -15,7 +15,7 @@ features
 installation
 ------------
 
-run ``pip install django-mongo-session``
+run ``pip install django-mongo-sessions``
 
 set ``mongo_sessions.session`` as session engine::
 

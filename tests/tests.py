@@ -35,7 +35,7 @@ def test_items():
     session_engine['item1'], session_engine['item2'] = 1, 2
     session_engine.save()
     # Python 3.*
-    eq_(list(session_engine.items()), [('item2', 2), ('item1', 1)])
+    eq_(sorted(list(session_engine.items())), [('item1', 1), ('item2', 2)])
 
 
 def test_expiry():

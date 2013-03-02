@@ -40,12 +40,12 @@ def test_items():
 
 def test_expiry():
     # Test if the expiry age is set correctly
-    eq_(session_engine.get_expiry_age(), 10)
+    eq_(session_engine.get_expiry_age(), settings.SESSION_COOKIE_AGE)
     session_engine['key'] = 'expiring_value'
     session_engine.save()
     key = session_engine.session_key
     eq_(session_engine.exists(key), True)
-    time.sleep(15)
+    time.sleep(11)
     eq_(session_engine.exists(key), False)
 
 

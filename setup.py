@@ -30,6 +30,7 @@ description = 'mongodb as Django sessions backend'
 packages = ['mongo_sessions']
 
 
+# no codecs\with for python 2.5
 def long_description():
     f = open('README.rst')
     rst = f.read()
@@ -39,7 +40,7 @@ def long_description():
 
 setup(
     name='django-mongo-sessions',
-    version='0.0.1',
+    version='0.0.2',
     packages=packages,
     description=description,
     long_description=long_description(),

@@ -28,20 +28,20 @@ if not MONGO_CLIENT:
         port=MONGO_PORT,
     )
 
-    if not float(
-        '.'.join(MONGO_CLIENT.server_info()['version'].split('.')[:-1])
-    ) >= 2.2:
-        raise ImproperlyConfigured(
-            '''
-            Your mongodb service doesn't support TTL
-            http://docs.mongodb.org/manual/tutorial/expire-data/
-            '''
-        )
-
     MONGO_CLIENT = MONGO_CLIENT[MONGO_DB_NAME]
 
     if MONGO_DB_USER and MONGO_DB_PASSWORD:
         MONGO_CLIENT.authenticate(MONGO_DB_USER, MONGO_DB_PASSWORD)
+
+MONGO_DB_VERSION = MONGO_CLIENT.connection.server_info()['version']
+
+if not float('.'.join(MONGO_DB_VERSION.split('.')[:-1])) >= 2.2:
+    raise ImproperlyConfigured(
+        '''
+        Your mongodb service doesn't support TTL
+        http://docs.mongodb.org/manual/tutorial/expire-data/
+        '''
+    )
 
 DB_COLLECTION = MONGO_CLIENT[MONGO_SESSIONS_COLLECTION]
 
@@ -62,8 +62,8 @@ if len(MONGO_SESSIONS_INDEXES) <= 1:
     MONGO_SESSIONS_INDEXES = DB_COLLECTION.index_information()
 
 # change creation_date index if, MONGO_SESSIONS_TTL was changed
-if MONGO_SESSIONS_INDEXES['creation_date_1']['expireAfterSeconds'] \
-        != MONGO_SESSIONS_TTL:
+if int(MONGO_SESSIONS_INDEXES['creation_date_1']['expireAfterSeconds']) \
+        != int(MONGO_SESSIONS_TTL):
     DB_COLLECTION.drop_index('creation_date_1')
 
     DB_COLLECTION.ensure_index(

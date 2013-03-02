@@ -9,7 +9,7 @@ features
 ********
 
 * fast NoSQL Django sessions backend
-* automatic invalidation by `TTL <http://docs.mongodb.org/manual/tutorial/expire-data/>`_
+* invalidation via `TTL <http://docs.mongodb.org/manual/tutorial/expire-data/>`_
 
 ------------
 installation

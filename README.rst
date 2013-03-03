@@ -59,7 +59,7 @@ every time you change one of this values, ``expireAfterSeconds`` index
 will be dropped and then will be indexed with ``insureIndex`` again,
 be careful here
 
-*it is good way to change expireAfterSeconds only by 1 runnings instance*
+*it is good way to change expireAfterSeconds only by 1 running instance*
 
 tests::
 

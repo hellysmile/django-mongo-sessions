@@ -47,6 +47,20 @@ second, if you need to connect to mongodb, like::
 
     # all this settings are defaults, you can skip any
 
+``expireAfterSeconds`` index value by default is ``SESSION_COOKIE_AGE``
+you can change::
+
+    MONGO_SESSIONS_TTL = 60 * 60 # one hour
+
+be sure, that you know what are you doing with it, ``SESSION_COOKIE_AGE``
+will get different expiration time
+
+every time you change one of this values, ``expireAfterSeconds`` index
+will be dropped and then will be indexed with ``insureIndex`` again,
+be careful here
+
+*it is good way to change expireAfterSeconds only by 1 runnings instance*
+
 tests::
 
     pip install tox

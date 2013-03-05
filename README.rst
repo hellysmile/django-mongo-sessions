@@ -1,9 +1,10 @@
 django-mongo-sessions
 =====================
-:Info: mongodb as Django sessions backend
+
+:info: mongodb as Django sessions backend
 
 .. image:: https://api.travis-ci.org/hellysmile/django-mongo-sessions.png
-        :target: https://travis-ci.org/hellysmile/django-mongo-sessions
+    :target: https://travis-ci.org/hellysmile/django-mongo-sessions
 
 features
 ********
@@ -11,7 +12,6 @@ features
 * fast NoSQL Django sessions backend
 * invalidation via `TTL <http://docs.mongodb.org/manual/tutorial/expire-data/>`_
 
-------------
 installation
 ------------
 
@@ -21,7 +21,6 @@ set ``mongo_sessions.session`` as session engine::
 
     SESSION_ENGINE = 'mongo_sessions.session'
 
---------
 settings
 --------
 

@@ -55,7 +55,7 @@ be sure, that you know what are you doing with it, ``SESSION_COOKIE_AGE``
 will get different expiration time
 
 every time you change one of this values, ``expireAfterSeconds`` index
-will be dropped and then will be indexed with ``insureIndex`` again,
+will be dropped and then will be indexed with ``ensureIndex`` again,
 be careful here
 
 *it is good way to change expireAfterSeconds only by 1 running instance*

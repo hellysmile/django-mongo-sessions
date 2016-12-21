@@ -33,7 +33,11 @@ if not MONGO_CLIENT:
     if MONGO_DB_USER and MONGO_DB_PASSWORD:
         MONGO_CLIENT.authenticate(MONGO_DB_USER, MONGO_DB_PASSWORD)
 
-MONGO_DB_VERSION = MONGO_CLIENT.connection.server_info()['version']
+try:
+    MONGO_DB_VERSION = MONGO_CLIENT.connection.server_info()['version']
+except TypeError:
+    # for pymongo >= 3
+    MONGO_DB_VERSION = MONGO_CLIENT.client.server_info()['version']
 
 if not float('.'.join(MONGO_DB_VERSION.split('.')[:-1])) >= 2.2:
     raise ImproperlyConfigured(

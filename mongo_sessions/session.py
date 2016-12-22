@@ -36,7 +36,7 @@ class SessionStore(SessionBase):
         if not mongo_session is None:
             return self.decode(force_unicode(mongo_session['session_data']))
         else:
-            self.create()
+            self._session_key = None
             return {}
 
     def exists(self, session_key):
@@ -65,12 +65,13 @@ class SessionStore(SessionBase):
             return
 
     def save(self, must_create=False):
-        session_key = self._get_or_create_session_key()
-        if must_create and self.exists(session_key):
+        if self.session_key is None:
+            return self.create()
+        if must_create and self.exists(self.session_key):
             raise CreateError
 
         session = {
-            'session_key': session_key,
+            'session_key': self.session_key,
             'session_data': self.encode(
                 self._get_session(no_load=must_create)
             ),
@@ -78,7 +79,7 @@ class SessionStore(SessionBase):
         }
 
         self.db_collection.update(
-            {'session_key': session_key},
+            {'session_key': self.session_key},
             {'$set': session},
             upsert=True
         )

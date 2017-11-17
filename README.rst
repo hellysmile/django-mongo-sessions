@@ -35,6 +35,10 @@ first, if already have mongo connection, like::
     MONGO_CLIENT = connection.your_database
     MONGO_SESSIONS_COLLECTION = 'mongo_sessions' # default option
 
+also, mongo connection could be specified by path, like::
+
+    MONGO_CLIENT = 'app.storage.mongo_client'
+
 second, if you need to connect to mongodb, like::
 
     MONGO_PORT = 27017
